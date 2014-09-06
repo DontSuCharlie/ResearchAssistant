@@ -1,9 +1,5 @@
 @font-face{    font-family: CODE_LIGHT;
-    src: url('../fonts/code_light.eot');
-    src: url('../fonts/code_light.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/code_light.woff') format('woff'),
-         url('../fonts/code_light.ttf') format('truetype'),
-         url('../fonts/code_light.svg#code_lightregular') format('svg');
+    src: url('../fonts/code_light.woff') format('woff'),
     font-weight: normal;
     font-style: normal;
 }

@@ -10,8 +10,16 @@
 	"tabs",
 	"bookmarks"
   ],
+  "content_scripts": [
+    {
+      "matches": ["http://*/*"],
+      "js": ["jquery-2.1.1.js", "highlight.js"]
+    }
+  ],
   "browser_action": {
     "default_icon": "icon.png",
     "default_popup": "popup.html"
   }
+
+  
 }
