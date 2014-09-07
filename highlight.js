@@ -6,7 +6,7 @@
  * Brian Yang
  */
 var historyArray = [];
-var historyArrayName = [];
+var history;
 var index = 0;
  
 var popup = document.createElement('div'); //popup wrapper
@@ -40,7 +40,8 @@ var service_url = 'https://www.googleapis.com/freebase/v1/search';
 
 function selectText() {		
 	selection = window.getSelection().toString();
-
+	historyArray[historyArray.length] = selection;
+	index++;
     if (selection.trim() == "")
 		return;
 
@@ -56,9 +57,6 @@ function selectText() {
 
 function selectText2(text) {		
 	selection = text;
-
-    if (selection.trim() == "")
-		return;
 
     var xhr = new XMLHttpRequest();
     xhr.open("GET", service_url + '?query='+ selection + '&limit=1&output=(description)&indent=true', true);
@@ -77,13 +75,16 @@ function back(){
 	if(index > 0)
 		index--;
 	selectText2(historyArray[index]);
+
 }
 function forward(){
 	if(index < historyArray.length)
 		index++;
 	selectText2(historyArray[index]);
+
 }
 function responseFunction(response) {
+	history = response;
 	document.getElementById("popup").style.height = "27%";
 	document.getElementById("result_title").innerHTML = selection;
 	document.getElementById("result").innerHTML = "<p>" + response.result[0].output.description["/common/topic/description"] + "</p>";
@@ -94,8 +95,6 @@ function responseFunction(response) {
 
 	attribution.innerHTML = "<p class='freebase-attribution'>The above information is provided by the Freebase and licensed under a Creative Commons Generic License (CC-BY). For more information, visit <a href='http://www.freebase.com/' target='_blank'>Freebase.com</a>.</p>";
 
-	historyArray[historyArray.length] = selection;
-	index++;
 
     document.body.onclick = function(e) {
 	    if(e.currentTarget != document.getElementById('popup')) {
