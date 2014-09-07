@@ -4,32 +4,23 @@
   "name": "Research Assistant",
    "version": "1.0",
   "description": "Chrome Extension that helps define highlighted terms. Simply tap on a short-cut key you defined, and everything you highlight will be entered into the Wikipedia search engine, extracted, and displayed on a small pop up window. You can even highlight the pop up's text to continue on and on.",
-	"commands": 
-	{
-		"_execute_page_action":
-		{
-			"suggested_key":
-			{
-				"default": "Ctrl+Shift",
-				"mac":"Command+Shift"
-			}
-		},
-	},
+	
 	"page_action":
 	{
 		"default_icon": 
 		{
-			"19": "icon.png",
-		},
-	}
+			"19": "icon.png"
+		}
+	},
   "permissions": [
-    "http://*.google.com/",
+    "http://*.googleapis.com/",
 	"tabs",
 	"bookmarks"
   ],
   "content_scripts": [
     {
       "matches": ["http://*/*"],
+      "css" : ["popup.css"],
       "js": ["jquery-2.1.1.js", "highlight.js"]
     }
   ]
