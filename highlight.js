@@ -1,14 +1,33 @@
 /**
  * Reads highlighted text and queries the text on the Freebase database
  * MHacks 2014
+ *
+ * Brian Yang
+ * Charlie Su
  */
+
+var popup = document.createElement('div'); //popup wraper
+popup.id = "popup";
+document.body.appendChild(popup);
+
+var result_title = document.createElement('h3'); // result content area
+result_title.id = "result_title";
+popup.appendChild(result_title);
+
+var result = document.createElement('div'); // result content area
+result.id = "result";
+popup.appendChild(result);
+
+var selection = "";
 
 function selectText() {
 
     var service_url = 'https://www.googleapis.com/freebase/v1/search';
 
+    selection = window.getSelection().toString();
+
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", service_url + '?query='+ window.getSelection().toString() + '&limit=5&output=(description)&indent=false', true);
+    xhr.open("GET", service_url + '?query='+ selection + '&limit=1&output=(description)&indent=false', true);
     xhr.onreadystatechange = function() {
 	    if (xhr.readyState == 4) {
 	    	console.log(xhr.responseText);
@@ -19,7 +38,10 @@ function selectText() {
 }
 
 function responseFunction(response) {
-	$('#result').html("HELLO");
+	$('#result_title').empty();
+	$('#result_title').html(selection);
+	// Note to self: Remove jQuery dependency! - Brian
+	$('#result').empty();
     $.each(response.result, function(i, result) {
       $('<p>', {text:result['output'].description["/common/topic/description"]}).appendTo('#result');
     });
