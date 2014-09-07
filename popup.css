@@ -9,4 +9,4 @@
 }
 
 h1{font-family: CODE_LIGHT;}
-html{background: repeating-linear-gradient(45deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 1) 1.5%, rgba(155, 155, 155, 0) 1.5%, rgba(155, 155, 155, 0) 3%), linear-gradient(#DDDDDD, #FFFFFF)}
+#popup{background: repeating-linear-gradient(45deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 1) 1.5%, rgba(155, 155, 155, 0) 1.5%, rgba(155, 155, 155, 0) 3%), linear-gradient(#DDDDDD, #FFFFFF)}
