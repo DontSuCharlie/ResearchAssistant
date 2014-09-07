@@ -19,18 +19,18 @@ result.id = "result";
 popup.appendChild(result);
 
 var selection = "";
+var service_url = 'https://www.googleapis.com/freebase/v1/search';
 
 function selectText() {
-
-    var service_url = 'https://www.googleapis.com/freebase/v1/search';
-
     selection = window.getSelection().toString();
+
+    if (selection == "")
+    	return;
 
     var xhr = new XMLHttpRequest();
     xhr.open("GET", service_url + '?query='+ selection + '&limit=1&output=(description)&indent=false', true);
     xhr.onreadystatechange = function() {
 	    if (xhr.readyState == 4) {
-	    	console.log(xhr.responseText);
 	    	responseFunction(JSON.parse(xhr.responseText));
 	    }
     }
@@ -38,7 +38,7 @@ function selectText() {
 }
 
 function responseFunction(response) {
-	document.getElementById("popup").style.height = "33%";
+	document.getElementById("popup").style.height = "25%";
 
 	document.getElementById("result_title").innerHTML = selection;
 
@@ -47,6 +47,15 @@ function responseFunction(response) {
     $.each(response.result, function(i, result) {
       $('<p>', {text:result['output'].description["/common/topic/description"]}).appendTo('#result');
     });
+
+    document.body.onclick = function(e) {
+    if(e.target != document.getElementById('popup')) {
+        //document.getElementById("popup").style.height = "0";   
+        console.log("Clicked outside!");  
+    } else {
+    	console.log("Clicked inside!");
+    }
+    }
 }
 
 document.captureEvents(Event.MOUSEUP);
