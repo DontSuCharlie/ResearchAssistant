@@ -57,7 +57,7 @@ function selectText() {
 }
 
 document.getElementById('backButton').onclick = back();
-document.getElementById('forwardButton').onClick = forward();
+document.getElementById('forwardButton').onclick = forward();
 
 function back(){
 	if(index > 0)
