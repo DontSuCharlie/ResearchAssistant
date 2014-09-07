@@ -15,9 +15,15 @@
 #popup h3 {
 	font-family: CODE_LIGHT;
 	padding: 0 10px;
+	margin-top: 0px;
+	padding-top: 10px;
+	margin-bottom: 0px;
+	background: repeating-linear-gradient(45deg, white, white 1.5%, transparent 1.5%, transparent 3%), linear-gradient(#DFDFDF, #FFFFFF);
+	opacity: 0.9;
+
 }
 #popup{
-	background: repeating-linear-gradient(45deg, white, white 1.5%, transparent 1.5%, transparent 3%), linear-gradient(#DFDFDF, #FFFFFF);
+	background: linear-gradient(#DFDFDF, #FFFFFF);
 	z-index: 3;
 	top: 5px;
 	right: 5px;

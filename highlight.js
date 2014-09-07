@@ -5,8 +5,9 @@
  * Charlie Su
  * Brian Yang
  */
-
-var popup = document.createElement('div'); //popup wraper
+var historyArray = [];
+ 
+var popup = document.createElement('div'); //popup wrapper
 popup.id = "popup";
 document.body.appendChild(popup);
 
@@ -21,11 +22,14 @@ popup.appendChild(result);
 var selection = "";
 var service_url = 'https://www.googleapis.com/freebase/v1/search';
 
-function selectText() {
-    selection = window.getSelection().toString();
+function selectText() {		
+	selection = window.getSelection().toString();
+	console.log(selection);
 
-    if (selection == "")
-    	return;
+    if (selection.trim() == "")
+	{
+		return;
+	}
 
     var xhr = new XMLHttpRequest();
     xhr.open("GET", service_url + '?query='+ selection + '&limit=1&output=(description)&indent=false', true);
@@ -49,8 +53,10 @@ function responseFunction(response) {
     });
 
     document.body.onclick = function(e) {
-    if(e.target != document.getElementById('popup')) {
-        //document.getElementById("popup").style.height = "0";   
+    if(e.currentTarget != document.getElementById('popup')) {
+		historyArray[historyArray.length] = selection;
+        document.getElementById("popup").style.height = "0";
+		document.getElementById("popup").scrollTop="0";
         console.log("Clicked outside!");  
     } else {
     	console.log("Clicked inside!");
