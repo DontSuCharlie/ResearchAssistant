@@ -2,8 +2,8 @@
  * Reads highlighted text and queries the text on the Freebase database
  * MHacks 2014
  *
- * Brian Yang
  * Charlie Su
+ * Brian Yang
  */
 
 var popup = document.createElement('div'); //popup wraper
@@ -38,8 +38,10 @@ function selectText() {
 }
 
 function responseFunction(response) {
-	$('#result_title').empty();
-	$('#result_title').html(selection);
+	document.getElementById("popup").style.height = "33%";
+
+	document.getElementById("result_title").innerHTML = selection;
+
 	// Note to self: Remove jQuery dependency! - Brian
 	$('#result').empty();
     $.each(response.result, function(i, result) {
