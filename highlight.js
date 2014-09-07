@@ -76,17 +76,20 @@ function back(){
 		index--;
 	selectText2(historyArray[index]);
 
+	responseFunction(historyArray[index]);
 }
 function forward(){
 	if(index < historyArray.length)
 		index++;
 	selectText2(historyArray[index]);
 
+	responseFunction(historyArray[index]);
 }
 function responseFunction(response) {
 	history = response;
 	document.getElementById("popup").style.height = "27%";
 	document.getElementById("result_title").innerHTML = selection;
+
 	document.getElementById("result").innerHTML = "<p>" + response.result[0].output.description["/common/topic/description"] + "</p>";
 
 	var attribution = document.createElement('p');
@@ -95,6 +98,8 @@ function responseFunction(response) {
 
 	attribution.innerHTML = "<p class='freebase-attribution'>The above information is provided by the Freebase and licensed under a Creative Commons Generic License (CC-BY). For more information, visit <a href='http://www.freebase.com/' target='_blank'>Freebase.com</a>.</p>";
 
+	historyArray[historyArray.length] = response;
+	index++;
 
     document.body.onclick = function(e) {
 	    if(e.currentTarget != document.getElementById('popup')) {
