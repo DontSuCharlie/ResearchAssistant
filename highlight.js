@@ -62,12 +62,12 @@ function back(){
 		index--;
 	responseFunction(historyArray[index]);
 }
-function forward() {
+function forward(){
 	if(index < historyArray.length)
 		index++;
 	responseFunction(historyArray[index]);
 }
-
+function responseFunction(response) {
 	document.getElementById("popup").style.height = "27%";
 	document.getElementById("result_title").innerHTML = selection;
 
