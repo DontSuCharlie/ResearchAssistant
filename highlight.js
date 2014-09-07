@@ -40,7 +40,22 @@ var service_url = 'https://www.googleapis.com/freebase/v1/search';
 
 function selectText() {		
 	selection = window.getSelection().toString();
-	console.log(selection);
+
+    if (selection.trim() == "")
+		return;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", service_url + '?query='+ selection + '&limit=1&output=(description)&indent=true', true);
+    xhr.onreadystatechange = function() {
+	    if (xhr.readyState == 4) {
+	    	responseFunction(JSON.parse(xhr.responseText));
+	    }
+    }
+    xhr.send();
+}
+
+function selectText2(text) {		
+	selection = text;
 
     if (selection.trim() == "")
 		return;
@@ -61,14 +76,12 @@ document.getElementById('forwardButton').onclick = forward;
 function back(){
 	if(index > 0)
 		index--;
-	selection = historyArrayName[index];
-	responseFunction(historyArray[index]);
+	selectText2(historyArray[index]);
 }
 function forward(){
 	if(index < historyArray.length)
 		index++;
-	selection = historyArrayName[index];
-	responseFunction(historyArray[index]);
+	selectText2(historyArray[index]);
 }
 function responseFunction(response) {
 	document.getElementById("popup").style.height = "27%";
@@ -81,8 +94,7 @@ function responseFunction(response) {
 
 	attribution.innerHTML = "<p class='freebase-attribution'>The above information is provided by the Freebase and licensed under a Creative Commons Generic License (CC-BY). For more information, visit <a href='http://www.freebase.com/' target='_blank'>Freebase.com</a>.</p>";
 
-	historyArrayName[historyArrayName.length] = selection;
-	historyArray[historyArray.length] = response;
+	historyArray[historyArray.length] = selection;
 	index++;
 
     document.body.onclick = function(e) {
