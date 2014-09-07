@@ -6,6 +6,7 @@
  * Brian Yang
  */
 var historyArray = [];
+<<<<<<< HEAD
 var history;
 var index = 0;
  
