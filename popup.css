@@ -39,6 +39,7 @@
 }
 #popup #result { padding: 10px; }
 #popup #result p { margin-top: 0;}
+#popup #result p.freebase-attribution { font-size: 0.8em; color:#848484;}
 
 .descriptions {
 	margin-bottom: 10px;

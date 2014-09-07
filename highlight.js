@@ -48,6 +48,12 @@ function responseFunction(response) {
 
 	document.getElementById("result").innerHTML = "<p>" + response.result[0].output.description["/common/topic/description"] + "</p>";
 
+	var attribution = document.createElement('p');
+	attribution.id = "attribution";
+	result.appendChild(attribution);
+
+	attribution.innerHTML = "<p class='freebase-attribution'>The above information is provided by the Freebase and licensed under a Creative Commons Generic License (CC-BY). For more information, visit <a href='http://www.freebase.com/' target='_blank'>Freebase.com</a>.</p>";
+
     document.body.onclick = function(e) {
 	    if(e.currentTarget != document.getElementById('popup')) {
 			historyArray[historyArray.length] = selection;
