@@ -28,7 +28,7 @@
 	top: 5px;
 	right: 5px;
 	width: 33%;
-	position: absolute;
+	position: fixed;
 	margin: 15px;
 	height: 0; /* Hidden until modified by script */
 	overflow-y: scroll;
