@@ -21,7 +21,7 @@
     {
       "matches": ["http://*/*"],
       "css" : ["popup.css"],
-      "js": ["jquery-2.1.1.js", "highlight.js"]
+      "js": ["highlight.js"]
     }
   ]
 
