@@ -62,13 +62,12 @@ function back(){
 		index--;
 	responseFunction(historyArray[index]);
 }
-function forward(){
+function forward() {
 	if(index < historyArray.length)
 		index++;
 	responseFunction(historyArray[index]);
 }
 
-function responseFunction(response) {
 	document.getElementById("popup").style.height = "27%";
 	document.getElementById("result_title").innerHTML = selection;
 
@@ -81,16 +80,16 @@ function responseFunction(response) {
 	attribution.innerHTML = "<p class='freebase-attribution'>The above information is provided by the Freebase and licensed under a Creative Commons Generic License (CC-BY). For more information, visit <a href='http://www.freebase.com/' target='_blank'>Freebase.com</a>.</p>";
 
 	historyArray[historyArray.length] = response;
-	currentIndex++;
+	index++;
 
     document.body.onclick = function(e) {
 	    if(e.currentTarget != document.getElementById('popup')) {
 			
-	        document.getElementById("popup").style.height = "0";
+	        //document.getElementById("popup").style.height = "0";
 			document.getElementById("popup").scrollTop="0";
-	        //console.log("Clicked outside!");  
+	        console.log("Clicked outside!");  
 	    } else {
-	    	//console.log("Clicked inside!");
+	    	console.log("Clicked inside!");
 	    }
     }
 }
@@ -99,16 +98,3 @@ document.captureEvents(Event.MOUSEUP);
 document.onmouseup = selectText;
 
 
-function back() {
-	if(index > 0)
-		index--;
-	responseFunction(historyArray[index]);
-}
-function forward() {
-	if(index < historyArray.length)
-		index++;
-	responseFunction(historyArray[index]);
-}
-
-document.getElementById('backButton').onclick = back;
-document.getElementById('forwardButton').onclick = forward;
