@@ -11,8 +11,12 @@
     font-weight: normal;
     font-style: normal;
 }
+#wrapper{
+	margin-bottom: 10%;
+}
 
 #popup h3 {
+	float: left;
 	font-family: CODE_LIGHT;
 	padding: 0 10px;
 	font-weight: bold;
@@ -41,7 +45,28 @@
 #popup #result p { margin-top: 0;}
 #popup #result p.freebase-attribution { font-size: 0.8em; color:#848484;}
 
-.descriptions {
-	margin-bottom: 10px;
-	line-height: 1.2em;
+#popup button {
+	float: right;
+	display: table;
+	z-index: 5;
+	border-top: 1px solid #96D1F8;
+	background: linear-gradient(#3E779D, #65A9D7);
+	padding: 5px 10px;
+	border-radius: 6px;
+	color: white;
+	font-size: 14px;
+	font-family: Georgia;
+	text-decoration: none;
+	vertical-align: middle;
+   /*box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;(*/
+   }
+#popup button:hover{
+	border-top: 1px dotted;
+	background: linear-gradient(#28597A,#1B486E);
+	color: white;
+	}
+#popup button:active{
+	border-top: 1px dotted;
+	background: linear-gradient(#1B486E);
 }

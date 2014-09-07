@@ -6,14 +6,29 @@
  * Brian Yang
  */
 var historyArray = [];
+var index = 0;
  
 var popup = document.createElement('div'); //popup wrapper
 popup.id = "popup";
 document.body.appendChild(popup);
 
+var wrapper = document.createElement('div');
+wrapper.id = "wrapper";
+popup.appendChild(wrapper);
+
+var backButton = document.createElement('button');//creates back button
+backButton.id = "forwardButton";
+wrapper.appendChild(backButton);
+document.getElementById("forwardButton").innerHTML = "Forward";
+
+var backButton = document.createElement('button');//creates back button
+backButton.id = "backButton";
+wrapper.appendChild(backButton);
+document.getElementById("backButton").innerHTML = "Back";
+
 var result_title = document.createElement('h3'); // result content area
 result_title.id = "result_title";
-popup.appendChild(result_title);
+wrapper.appendChild(result_title);
 
 var result = document.createElement('div'); // result content area
 result.id = "result";
@@ -41,9 +56,22 @@ function selectText() {
     xhr.send();
 }
 
-function responseFunction(response) {
-	document.getElementById("popup").style.height = "25%";
+document.getElementById('backButton').onclick = back();
+document.getElementById('forwardButton').onClick = forward();
 
+function back(){
+	if(index > 0)
+		index--;
+	responseFunction(historyArray[index]);
+}
+function forward(){
+	if(index < historyArray.length)
+		index++;
+	responseFunction(historyArray[index]);
+}
+
+function responseFunction(response) {
+	document.getElementById("popup").style.height = "27%";
 	document.getElementById("result_title").innerHTML = selection;
 
 	document.getElementById("result").innerHTML = "<p>" + response.result[0].output.description["/common/topic/description"] + "</p>";
@@ -57,6 +85,7 @@ function responseFunction(response) {
     document.body.onclick = function(e) {
 	    if(e.currentTarget != document.getElementById('popup')) {
 			historyArray[historyArray.length] = selection;
+			currentIndex++;
 	        document.getElementById("popup").style.height = "0";
 			document.getElementById("popup").scrollTop="0";
 	        //console.log("Clicked outside!");  
